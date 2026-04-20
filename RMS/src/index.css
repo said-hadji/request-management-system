@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+}
