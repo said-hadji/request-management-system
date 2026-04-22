@@ -1,8 +1,26 @@
 import { X } from "lucide-react";
 
-export default function SideDrawer({ selectedRequest, setSelectedRequest }) {
-  const closeSideDrawer = () => {
-    return setSelectedRequest(null);
+export default function SideDrawer({
+  selectedRequest,
+  setSelectedRequest,
+  requests,
+  setRequests,
+}) {
+  const closeSideDrawer = () => setSelectedRequest(null);
+
+  const updateStatus = (status) => {
+    const newUpdate = requests.map((r) =>
+      r.id === selectedRequest.id ? { ...r, status } : r,
+    );
+    setRequests(newUpdate);
+    localStorage.setItem("requests", JSON.stringify(newUpdate));
+    closeSideDrawer();
+  };
+
+  const statusStyle = {
+    pending: "bg-yellow-200",
+    accepted: "bg-green-200",
+    rejected: "bg-red-200",
   };
 
   return (
@@ -48,7 +66,7 @@ export default function SideDrawer({ selectedRequest, setSelectedRequest }) {
           <span>
             Status:{" "}
             <span
-              className={`${selectedRequest.status === "pending" ? "bg-yellow-200" : selectedRequest.status === "accepted" ? "bg-green-200" : selectedRequest.status === "rejected" ? "bg-red-200" : ""} px-3 py-1 rounded-md`}
+              className={`${statusStyle[selectedRequest.status]} px-3 py-1 rounded-md`}
             >
               {selectedRequest.status}
             </span>
@@ -57,13 +75,24 @@ export default function SideDrawer({ selectedRequest, setSelectedRequest }) {
 
         <div className="flex gap-2 mt-8">
           <button
+            onClick={() => {
+              updateStatus("accepted");
+            }}
             disabled={selectedRequest.status !== "pending"}
-            style={{boxShadow: "0px 0px 8px 5px #a1f3be"}}
+            style={{
+              boxShadow:
+                selectedRequest.status === "pending"
+                  ? "0px 0px 8px 5px #a1f3be"
+                  : "",
+            }}
             className="flex-1 py-4 bg-[#1bb454] hover:bg-green-600 duration-300 disabled:bg-gray-100 rounded-2xl text-white disabled:text-gray-300 font-medium cursor-pointer disabled:cursor-not-allowed"
           >
             Accept
           </button>
           <button
+            onClick={() => {
+              updateStatus("rejected");
+            }}
             disabled={selectedRequest.status !== "pending"}
             className="flex-1 py-4 bg-red-500 hover:bg-red-600 duration-300 disabled:bg-gray-100 rounded-2xl text-white disabled:text-gray-300 font-medium cursor-pointer disabled:cursor-not-allowed"
           >

@@ -8,12 +8,12 @@ export default function Welcome() {
   ];
 
   const titleStyle = "text-lg font-medium";
-  const descriptionStyle = "w-xl text-black/70 leading-9";
+  const descriptionStyle = "w-full lg:w-xl text-black/70 leading-9";
 
   return (
-    <div className="flex-1 h-full flex p-4">
+    <div className={`lg:ml-90 flex-1 h-full flex p-4`}>
       <div className="flex flex-col gap-8">
-        <h1 className="text-4xl font-bold">Loan App — Practice Project</h1>
+        <h1 className="text-2xl sm:text-4xl font-bold">Loan App — Practice Project</h1>
         <p className={descriptionStyle}>
           A simple React-based loan application built for learning purposes.
           Focused on form handling, validation, and dynamic UI behavior.

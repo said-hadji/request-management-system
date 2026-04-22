@@ -5,7 +5,7 @@ import Requests from "./LoanRequests";
 import Dashboard from "./Dashboard/Dashboard";
 import SideDrawer from "./Dashboard/Components/SideDrawer";
 
-export default function AdminLayout({ admin, setAdmin, requests }) {
+export default function AdminLayout({ admin, setAdmin, requests, setRequests }) {
   const [section, setSection] = useState(() => {
     const old = localStorage.getItem("section") || "dashboard";
     const redirectToDashboard = ["welcome", "requestALoan"];
@@ -33,6 +33,8 @@ export default function AdminLayout({ admin, setAdmin, requests }) {
       )}
       {selectedRequest && (
         <SideDrawer
+          requests={requests}
+          setRequests={setRequests}
           selectedRequest={selectedRequest}
           setSelectedRequest={setSelectedRequest}
         />

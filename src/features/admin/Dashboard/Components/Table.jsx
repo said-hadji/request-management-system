@@ -34,7 +34,7 @@ export default function Table({ requests, setSelectedRequest }) {
       </header>
 
       {requests.map((request) => {
-        return <TableRow request={request} setSelectedRequest={setSelectedRequest} />;
+        return <TableRow key={request.id} request={request} setSelectedRequest={setSelectedRequest} />;
       })}
     </div>
   );

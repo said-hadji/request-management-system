@@ -116,7 +116,7 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
       onClick={() => {
         setIsSelected(false);
       }}
-      className="flex-1 h-full flex justify-center p-4"
+      className="flex-1 flex justify-center p-4"
     >
       <form
         onSubmit={(e) => {
@@ -128,7 +128,7 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
           setIsLoading(false);
         }}
         action=""
-        className="w-xl h-full flex flex-col justify-between"
+        className="w-full lg:w-xl flex flex-col justify-between gap-4"
       >
         <div className="flex flex-col items-center gap-14">
           <div className="text-center space-y-8">
@@ -139,9 +139,9 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-xl space-y-4">
-              <div className="flex gap-4">
+          <div className="w-full flex flex-col items-center gap-4">
+            <div className="w-full lg:w-xl space-y-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 {/* FirstName input */}
                 <div className="flex-1">
                   <div className="relative">
@@ -321,7 +321,7 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
 
             {/* Amount input */}
             <div
-              className={`w-xl flex flex-col gap-3 ${formData.salary ? "" : "hidden"}`}
+              className={`w-full lg:w-xl flex flex-col gap-3 ${formData.salary ? "" : "hidden"}`}
             >
               <label>Choose amount</label>
               <div className="flex gap-4">
