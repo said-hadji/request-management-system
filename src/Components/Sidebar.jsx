@@ -39,7 +39,7 @@ export default function Sidebar({ isSideBar, setIsSideBar, admin, section, setSe
     <div className="">
       <div
         style={{ boxShadow: "0px 0px 30px 1px rgba(0, 0, 0, 0.3)" }}
-        className={`fixed top-4 left-4 bottom-4 w-80 bg-slate-950 rounded-2xl flex flex-col justify-between p-4 z-100 ${isMobile && !isSideBar ? "-translate-x-100" : ""} duration-300`}
+        className={`fixed top-4 lg:top-10 left-4 lg:left-10 bottom-4 lg:bottom-10 w-80 bg-slate-950 rounded-2xl flex flex-col justify-between p-4 z-100 ${isMobile && !isSideBar ? "-translate-x-100" : ""} duration-300`}
       >
         <div className="flex flex-col gap-10">
           <div className="flex justify-between items-center">

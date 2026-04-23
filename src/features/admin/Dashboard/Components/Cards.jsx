@@ -6,7 +6,7 @@ import {
   TrendingUp,
   TrendingDown,
 } from "lucide-react";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Cards({ requests, selectedCard, setSelectedCard }) {
   const totalRequests = requests.length;
@@ -21,11 +21,11 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
   ).length;
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="w-full px-2 lg:px-0 py-4 flex xl:grid xl:grid-cols-4 gap-4 overflow-x-scroll xl:overflow-visible">
       <button
         onClick={() => setSelectedCard("total")}
-        style={{boxShadow: selectedCard === "total" ? "0px 3px 10px 0.1px #b1bdd0" : ""}}
-        className={`text-start w-full bg-linear-to-tr from-slate-50 via-slate-300 to-slate-500 rounded-2xl p-4 space-y-6 cursor-pointer`}
+        style={{boxShadow: selectedCard === "total" ? "0px 2px 1px 1px #62748e" : ""}}
+        className={`text-start min-w-75 xl:min-w-full bg-linear-to-tr from-slate-50 via-slate-300 to-slate-500 rounded-2xl p-4 space-y-6 cursor-pointer shrink-0 xl:shrink`}
       >
         <div className="flex items-center gap-2">
           <span>
@@ -48,8 +48,8 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
 
       <button
         onClick={() => setSelectedCard("pending")}
-        style={{boxShadow: selectedCard === "pending" ? "0px 3px 10px 0.1px #facc15" : ""}}
-        className={`text-start w-full bg-linear-to-tr from-yellow-50 to-yellow-300 rounded-2xl p-4 space-y-6 cursor-pointer`}
+        style={{boxShadow: selectedCard === "pending" ? "0px 2px 1px 1px #ffdf20" : ""}}
+        className={`text-start min-w-75 xl:min-w-full bg-linear-to-tr from-yellow-50 to-yellow-300 rounded-2xl p-4 space-y-6 cursor-pointer shrink-0 xl:shrink`}
       >
         <div className="flex items-center gap-2">
           <span>
@@ -72,8 +72,8 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
 
       <button
         onClick={() => setSelectedCard("accepted")}
-        style={{boxShadow: selectedCard === "accepted" ? "0px 3px 10px 0.1px #68e697" : ""}}
-        className={`text-start w-full bg-linear-to-tr from-green-50 to-green-300 rounded-2xl p-4 space-y-6 cursor-pointer`}
+        style={{boxShadow: selectedCard === "accepted" ? "0px 2px 1px 1px #7bf1a8" : ""}}
+        className={`text-start min-w-75 xl:min-w-full bg-linear-to-tr from-green-50 to-green-300 rounded-2xl p-4 space-y-6 cursor-pointer shrink-0 xl:shrink`}
       >
         <div className="flex items-center gap-2">
           <span>
@@ -96,8 +96,8 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
 
       <button
         onClick={() => setSelectedCard("rejected")}
-        style={{boxShadow: selectedCard === "rejected" ? "0px 3px 10px 0.1px #fa8b8b" : ""}}
-        className={`text-start w-full bg-linear-to-tr from-red-50 to-red-300 rounded-2xl p-4 space-y-6 cursor-pointer`}
+        style={{boxShadow: selectedCard === "rejected" ? "0px 2px 1px 1px #ffa2a2" : ""}}
+        className={`text-start min-w-75 xl:min-w-full bg-linear-to-tr from-red-50 to-red-300 rounded-2xl p-4 space-y-6 cursor-pointer shrink-0 xl:shrink`}
       >
         <div className="flex items-center gap-2">
           <span>

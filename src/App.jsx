@@ -11,7 +11,7 @@ function App() {
   );
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen lg:h-screen">
       {admin === null && <Login setAdmin={setAdmin} />}
       {admin === true && <AdminLayout admin={admin} setAdmin={setAdmin} requests={requests} setRequests={setRequests} />}
       {admin === false && <UserLayout admin={admin} setAdmin={setAdmin} setRequests={setRequests} />}

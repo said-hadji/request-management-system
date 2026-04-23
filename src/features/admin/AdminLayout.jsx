@@ -18,7 +18,7 @@ export default function AdminLayout({ admin, setAdmin, requests, setRequests }) 
   }, [section]);
 
   return (
-    <div className="w-full h-full flex gap-6 p-10">
+    <div className="w-full h-full flex">
       <Sidebar
         admin={admin}
         section={section}

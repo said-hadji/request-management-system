@@ -35,7 +35,7 @@ export default function TableRow({ request, setSelectedRequest }) {
       <span className="truncate border-r border-mauve-300 p-4">
         {request.salary}
       </span>
-      <span className="border-r border-mauve-300 p-4">
+      <span className="truncate border-r border-mauve-300 p-4">
         {request.amount} USD
       </span>
       <span className={`${currentStyle.bg} p-4`}>
