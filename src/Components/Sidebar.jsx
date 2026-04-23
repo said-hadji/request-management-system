@@ -1,8 +1,8 @@
-import { House, HandCoins, LayoutDashboard, Hand } from "lucide-react";
+import { House, HandCoins, LayoutDashboard, Hand, X } from "lucide-react";
 
 import LogoutButton from "./LogoutButton";
 
-export default function Sidebar({ admin, section, setSection, setAdmin }) {
+export default function Sidebar({ isSideBar, setIsSideBar, admin, section, setSection, setAdmin }) {
   const buttons = [
     {
       id: 1,
@@ -27,6 +27,8 @@ export default function Sidebar({ admin, section, setSection, setAdmin }) {
     },
   ];
 
+  const isMobile = screen.width < 1024;
+
   const buttonsStyle =
     "text-start text-white/70 px-2 py-3 hover:bg-gray-900 rounded-xl flex items-center gap-3 duration-300 cursor-pointer";
 
@@ -34,13 +36,16 @@ export default function Sidebar({ admin, section, setSection, setAdmin }) {
     "text-start text-white px-2 py-3 bg-slate-900 rounded-xl flex items-center gap-3 cursor-pointer";
 
   return (
-    <div className="hidden lg:block">
+    <div className="">
       <div
         style={{ boxShadow: "0px 0px 30px 1px rgba(0, 0, 0, 0.3)" }}
-        className="fixed top-10 left-10 bottom-10 w-80 bg-slate-950 rounded-2xl flex flex-col justify-between p-4 z-50"
+        className={`fixed top-4 left-4 bottom-4 w-80 bg-slate-950 rounded-2xl flex flex-col justify-between p-4 z-100 ${isMobile && !isSideBar ? "-translate-x-100" : ""} duration-300`}
       >
         <div className="flex flex-col gap-10">
-          <h1 className="text-4xl text-white font-bold uppercase">Rms</h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-4xl text-white font-bold uppercase">Rms</h1>
+            <X onClick={() => setIsSideBar(false)} className="text-white lg:hidden"/>
+          </div>
 
           <div className="flex flex-col gap-1">
             {buttons

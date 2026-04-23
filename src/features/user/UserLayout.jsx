@@ -10,22 +10,27 @@ export default function UserLayout({ admin, setAdmin, setRequests }) {
     const old = localStorage.getItem("section") || "welcome";
     return old === "dashboard" ? "welcome" : old;
   });
+  const [isSideBar, setIsSideBar] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("section", section);
   }, [section]);
 
   return (
-    <div className="w-full min-h-screen lg:h-full flex flex-col gap-10 p-4 lg:p-10">
+    <div className="w-full min-h-screen lg:h-full flex flex-col lg:gap-10 p-4 lg:p-10">
       <Sidebar
+        isSideBar={isSideBar}
+        setIsSideBar={setIsSideBar}
         admin={admin}
         section={section}
         setSection={setSection}
         setAdmin={setAdmin}
       />
-      <Menu />
+      <Menu onClick={() => setIsSideBar(true)} className="m-1 lg:hidden"/>
       {section === "welcome" && <Welcome />}
-      {section === "requestALoan" && <LoanRequestFlow setRequests={setRequests} />}
+      {section === "requestALoan" && (
+        <LoanRequestFlow setRequests={setRequests} />
+      )}
     </div>
   );
 }
