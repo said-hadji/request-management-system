@@ -5,7 +5,16 @@ import Requests from "./LoanRequests";
 import Dashboard from "./Dashboard/Dashboard";
 import SideDrawer from "./Dashboard/Components/SideDrawer";
 
-export default function AdminLayout({ admin, setAdmin, requests, setRequests }) {
+import { Menu } from "lucide-react";
+
+export default function AdminLayout({
+  isSidebar,
+  setIsSidebar,
+  admin,
+  setAdmin,
+  requests,
+  setRequests,
+}) {
   const [section, setSection] = useState(() => {
     const old = localStorage.getItem("section") || "dashboard";
     const redirectToDashboard = ["welcome", "requestALoan"];
@@ -18,13 +27,16 @@ export default function AdminLayout({ admin, setAdmin, requests, setRequests }) 
   }, [section]);
 
   return (
-    <div className="w-full h-full flex">
+    <div className="w-full h-full flex flex-col lg:gap-10 p-4 lg:p-10">
       <Sidebar
+        isSidebar={isSidebar}
+        setIsSidebar={setIsSidebar}
         admin={admin}
         section={section}
         setSection={setSection}
         setAdmin={setAdmin}
       />
+      <Menu onClick={() => setIsSidebar(true)} className="m-1 lg:hidden" />
       {section === "dashboard" && (
         <Dashboard
           requests={requests}

@@ -12,7 +12,7 @@ export default function Dashboard({ requests, setSelectedRequest }) {
   }, [selectedCard]);
 
   return (
-    <div className="lg:ml-90 w-full flex-1 h-full flex flex-col gap-14 p-4 lg:p-10">
+    <div className="lg:ml-90 w-full flex-1 h-full flex flex-col gap-14 p-4 lg:px-10 lg:py-14">
       <div>
         <h1 className="text-4xl font-bold">Dashboard</h1>
       </div>
