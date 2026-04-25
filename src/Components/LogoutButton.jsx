@@ -1,9 +1,9 @@
 import { LogOut } from "lucide-react";
 
-export default function LogoutButton({ setAdmin }) {
+export default function LogoutButton({ setIsAdmin }) {
   const handleLogout = () => {
     localStorage.removeItem("isAdmin");
-    setAdmin(null);
+    setIsAdmin(null);
   };
 
   return (

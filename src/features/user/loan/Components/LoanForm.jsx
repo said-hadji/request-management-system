@@ -94,7 +94,11 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
     if (!isCompleted) return;
     setIsSuccess(true);
 
-    const newRequest = { id: Date.now(), ...formData };
+    const newRequest = {
+      id: crypto.randomUUID(),
+      createdAt: new Date().toISOString(),
+      ...formData,
+    };
     setRequests((prev) => {
       const updated = [...prev, newRequest];
       localStorage.setItem("requests", JSON.stringify(updated));

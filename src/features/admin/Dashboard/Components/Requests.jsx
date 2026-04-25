@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import EmptyMessage from "../../../../Components/EmptyMessage";
+import EmptyRequestsState from "../../../../Components/EmptyRequestsState";
 import Table from "./Table";
 import useIsMobile from "../../../../Utils/IsMobile";
 import MobileTable from "./MobileTable";
@@ -19,7 +19,7 @@ export default function Requests({
   return (
     <div className="relative w-full flex-1 min-h-0 rounded-2xl flex flex-col gap-4 overflow-hidden px-4">
       {filteredArray.length === 0 ? (
-        <EmptyMessage selectedCard={selectedCard} />
+        <EmptyRequestsState selectedCard={selectedCard} />
       ) : filteredArray.length > 0 && !isMobile ? (
         <Table
           requests={filteredArray}

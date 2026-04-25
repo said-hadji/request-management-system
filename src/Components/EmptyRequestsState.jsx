@@ -1,26 +1,28 @@
-export default function EmptyMessage({ selectedCard }) {
-  const emptyMessage = {
-    total: {
-      title: "No incoming requests",
-      description:
-        "When users send requests, they'll show up here for you to review.",
-    },
-    pending: {
-      title: "No pending requests",
-      description:
-        "When you have pending requests, they'll show up here for you to review.",
-    },
-    accepted: {
-      title: "No accepted requests",
-      description:
-        "When you have accepted requests, they'll show up here for you to review.",
-    },
-    rejected: {
-      title: "No rejected requests",
-      description:
-        "When you have rejected requests, they'll show up here for you to review.",
-    },
-  };
+const EMPTY_MESSAGES = {
+  total: {
+    title: "No incoming requests",
+    description:
+      "When users send requests, they'll show up here for you to review.",
+  },
+  pending: {
+    title: "No pending requests",
+    description:
+      "When you have pending requests, they'll show up here for you to review.",
+  },
+  accepted: {
+    title: "No accepted requests",
+    description:
+      "When you have accepted requests, they'll show up here for you to review.",
+  },
+  rejected: {
+    title: "No rejected requests",
+    description:
+      "When you have rejected requests, they'll show up here for you to review.",
+  },
+};
+
+export default function EmptyRequestsState({ selectedCard }) {
+  const message = EMPTY_MESSAGES[selectedCard] || EMPTY_MESSAGES.total;
 
   return (
     <div
@@ -73,10 +75,10 @@ export default function EmptyMessage({ selectedCard }) {
       </div>
 
       <h2 className="text-base font-medium text-gray-800 mb-1.5">
-        {emptyMessage[selectedCard].title}
+        {message.title}
       </h2>
       <p className="text-center text-sm text-gray-400 leading-relaxed">
-        {emptyMessage[selectedCard].description}
+        {message.description}
       </p>
     </div>
   );

@@ -10,8 +10,8 @@ import { Menu } from "lucide-react";
 export default function AdminLayout({
   isSidebar,
   setIsSidebar,
-  admin,
-  setAdmin,
+  isAdmin,
+  setIsAdmin,
   requests,
   setRequests,
 }) {
@@ -31,10 +31,10 @@ export default function AdminLayout({
       <Sidebar
         isSidebar={isSidebar}
         setIsSidebar={setIsSidebar}
-        admin={admin}
+        isAdmin={isAdmin}
         section={section}
         setSection={setSection}
-        setAdmin={setAdmin}
+        setIsAdmin={setIsAdmin}
       />
       <Menu onClick={() => setIsSidebar(true)} className={`m-4 mt-4.5 lg:hidden`} />
       {section === "dashboard" && (

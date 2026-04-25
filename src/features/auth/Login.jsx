@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login({ setAdmin }) {
+export default function Login({ setIsAdmin }) {
   const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -10,16 +10,16 @@ export default function Login({ setAdmin }) {
       loginInfo.password === "admin"
     ) {
       localStorage.setItem("isAdmin", JSON.stringify(true));
-      setAdmin(true);
+      setIsAdmin(true);
     } else if (
       loginInfo.email === "user" &&
       loginInfo.password === "user"
     ) {
       localStorage.setItem("isAdmin", JSON.stringify(false));
-      setAdmin(false);
+      setIsAdmin(false);
     } else {
       localStorage.setItem("isAdmin", JSON.stringify(null));
-      setAdmin(null);
+      setIsAdmin(null);
     }
   };
 

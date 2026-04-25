@@ -5,7 +5,7 @@ import LoanRequestFlow from "./loan/LoanRequestFlow";
 import Sidebar from "../../Components/Sidebar";
 import { Menu } from "lucide-react";
 
-export default function UserLayout({ isSidebar, setIsSidebar, admin, setAdmin, setRequests }) {
+export default function UserLayout({ isSidebar, setIsSidebar, isAdmin, setIsAdmin, setRequests }) {
   const [section, setSection] = useState(() => {
     const old = localStorage.getItem("section") || "welcome";
     return old === "dashboard" ? "welcome" : old;
@@ -22,10 +22,10 @@ export default function UserLayout({ isSidebar, setIsSidebar, admin, setAdmin, s
       <Sidebar
         isSidebar={isSidebar}
         setIsSidebar={setIsSidebar}
-        admin={admin}
+        isAdmin={isAdmin}
         section={section}
         setSection={setSection}
-        setAdmin={setAdmin}
+        setIsAdmin={setIsAdmin}
       />
       <Menu onClick={() => setIsSidebar(true)} className="m-1 lg:hidden"/>
       {section === "welcome" && <Welcome />}

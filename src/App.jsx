@@ -5,7 +5,7 @@ import Login from "./features/auth/Login";
 
 function App() {
   const stored = localStorage.getItem("isAdmin");
-  const [admin, setAdmin] = useState(stored ? JSON.parse(stored) : null);
+  const [isAdmin, setIsAdmin] = useState(stored ? JSON.parse(stored) : null);
   const [requests, setRequests] = useState(
     JSON.parse(localStorage.getItem("requests")) || [],
   );
@@ -14,23 +14,23 @@ function App() {
 
   return (
     <div className="w-full h-screen lg:h-screen">
-      {admin === null && <Login setAdmin={setAdmin} />}
-      {admin === true && (
+      {isAdmin === null && <Login setIsAdmin={setIsAdmin} />}
+      {isAdmin === true && (
         <AdminLayout
           isSidebar={isSidebar}
           setIsSidebar={setIsSidebar}
-          admin={admin}
-          setAdmin={setAdmin}
+          isAdmin={isAdmin}
+          setIsAdmin={setIsAdmin}
           requests={requests}
           setRequests={setRequests}
         />
       )}
-      {admin === false && (
+      {isAdmin === false && (
         <UserLayout
           isSidebar={isSidebar}
           setIsSidebar={setIsSidebar}
-          admin={admin}
-          setAdmin={setAdmin}
+          isAdmin={isAdmin}
+          setIsAdmin={setIsAdmin}
           setRequests={setRequests}
         />
       )}
