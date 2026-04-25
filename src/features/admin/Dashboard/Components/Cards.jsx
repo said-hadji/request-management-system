@@ -21,7 +21,7 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
   ).length;
 
   return (
-    <div className="w-full px-2 lg:px-0 py-4 flex xl:grid xl:grid-cols-4 gap-4 overflow-x-scroll xl:overflow-visible">
+    <div className="w-full px-4 py-4 flex xl:grid xl:grid-cols-4 gap-4 overflow-x-scroll xl:overflow-visible">
       <button
         onClick={() => setSelectedCard("total")}
         style={{boxShadow: selectedCard === "total" ? "0px 2px 1px 1px #62748e" : ""}}
@@ -55,7 +55,7 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
           <span>
             <ClipboardClock className="text-yellow-700" />
           </span>
-          <h2 className="text-lg font-medium">Total Pending Requests</h2>
+          <h2 className="text-lg font-medium truncate">Total Pending Requests</h2>
         </div>
 
         <div className="flex flex-col gap-1">
@@ -79,7 +79,7 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
           <span>
             <SquareCheckBig className="text-green-700" />
           </span>
-          <h2 className="text-lg font-medium">Total Accepted Requests</h2>
+          <h2 className="text-lg font-medium truncate">Total Accepted Requests</h2>
         </div>
 
         <div className="flex flex-col gap-1">
@@ -103,7 +103,7 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
           <span>
             <SquareX className="text-red-700" />
           </span>
-          <h2 className="text-lg font-medium">Total Rejected Requests</h2>
+          <h2 className="text-lg font-medium truncate">Total Rejected Requests</h2>
         </div>
 
         <div className="flex flex-col gap-1">

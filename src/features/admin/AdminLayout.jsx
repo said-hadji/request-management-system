@@ -27,7 +27,7 @@ export default function AdminLayout({
   }, [section]);
 
   return (
-    <div className="w-full h-full flex flex-col lg:gap-10 p-4 lg:p-10">
+    <div className="w-full h-full flex flex-col lg:flex-row lg:gap-6 lg:py-10">
       <Sidebar
         isSidebar={isSidebar}
         setIsSidebar={setIsSidebar}
@@ -36,7 +36,7 @@ export default function AdminLayout({
         setSection={setSection}
         setAdmin={setAdmin}
       />
-      <Menu onClick={() => setIsSidebar(true)} className="m-1 lg:hidden" />
+      <Menu onClick={() => setIsSidebar(true)} className={`m-4 mt-4.5 lg:hidden`} />
       {section === "dashboard" && (
         <Dashboard
           requests={requests}

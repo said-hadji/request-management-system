@@ -1,8 +1,18 @@
 import { House, HandCoins, LayoutDashboard, Hand, X } from "lucide-react";
 
 import LogoutButton from "./LogoutButton";
+import useIsMobile from "../Utils/IsMobile";
 
-export default function Sidebar({ isSidebar, setIsSidebar, admin, section, setSection, setAdmin }) {
+export default function Sidebar({
+  isSidebar,
+  setIsSidebar,
+  admin,
+  section,
+  setSection,
+  setAdmin,
+}) {
+  const isMobile = useIsMobile();
+
   const buttons = [
     {
       id: 1,
@@ -27,8 +37,6 @@ export default function Sidebar({ isSidebar, setIsSidebar, admin, section, setSe
     },
   ];
 
-  const isMobile = screen.width < 1024;
-
   const buttonsStyle =
     "text-start text-white/70 px-2 py-3 hover:bg-gray-900 rounded-xl flex items-center gap-3 duration-300 cursor-pointer";
 
@@ -44,7 +52,10 @@ export default function Sidebar({ isSidebar, setIsSidebar, admin, section, setSe
         <div className="flex flex-col gap-10">
           <div className="flex justify-between items-center">
             <h1 className="text-4xl text-white font-bold uppercase">Rms</h1>
-            <X onClick={() => setIsSidebar(false)} className="text-white lg:hidden"/>
+            <X
+              onClick={() => setIsSidebar(false)}
+              className="text-white lg:hidden"
+            />
           </div>
 
           <div className="flex flex-col gap-1">
