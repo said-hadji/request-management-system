@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "../../Components/Sidebar";
 import Requests from "./LoanRequests";
 import Dashboard from "./Dashboard/Dashboard";
-import SideDrawer from "./Dashboard/Components/SideDrawer";
+import RequestDetailsModal from "./Dashboard/Components/RequestDetailsModal";
 
 import { Menu } from "lucide-react";
 
@@ -36,7 +36,10 @@ export default function AdminLayout({
         setSection={setSection}
         setIsAdmin={setIsAdmin}
       />
-      <Menu onClick={() => setIsSidebar(true)} className={`m-4 mt-4.5 lg:hidden`} />
+      <Menu
+        onClick={() => setIsSidebar(true)}
+        className={`m-4 mt-4.5 lg:hidden`}
+      />
       {section === "dashboard" && (
         <Dashboard
           requests={requests}
@@ -44,7 +47,7 @@ export default function AdminLayout({
         />
       )}
       {selectedRequest && (
-        <SideDrawer
+        <RequestDetailsModal
           requests={requests}
           setRequests={setRequests}
           selectedRequest={selectedRequest}

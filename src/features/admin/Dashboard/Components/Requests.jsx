@@ -1,6 +1,5 @@
-// import { useState } from "react";
 import EmptyRequestsState from "../../../../Components/EmptyRequestsState";
-import Table from "./RequestsTable";
+import RequestsTable from "./RequestsTable";
 import useIsMobile from "../../../../Utils/IsMobile";
 import RequestsMobileList from "./RequestsMobileList";
 
@@ -21,12 +20,15 @@ export default function Requests({
       {filteredArray.length === 0 ? (
         <EmptyRequestsState selectedCard={selectedCard} />
       ) : filteredArray.length > 0 && !isMobile ? (
-        <Table
+        <RequestsTable
           requests={filteredArray}
           setSelectedRequest={setSelectedRequest}
         />
       ) : (
-        <RequestsMobileList requests={filteredArray} setSelectedRequest={setSelectedRequest} />
+        <RequestsMobileList
+          requests={filteredArray}
+          setSelectedRequest={setSelectedRequest}
+        />
       )}
     </div>
   );
