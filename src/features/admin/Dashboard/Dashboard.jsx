@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Cards from "./Components/Cards";
+import RequestsStatsCards from "./Components/RequestsStatsCards";
 import Requests from "./Components/Requests";
 
 export default function Dashboard({ requests, setSelectedRequest }) {
@@ -18,7 +18,7 @@ export default function Dashboard({ requests, setSelectedRequest }) {
       </div>
 
       <div className="w-full min-h-0 flex-1 flex flex-col gap-4">
-        <Cards
+        <RequestsStatsCards
           requests={requests}
           selectedCard={selectedCard}
           setSelectedCard={setSelectedCard}

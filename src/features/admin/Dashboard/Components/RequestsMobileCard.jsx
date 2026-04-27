@@ -1,4 +1,4 @@
-export default function MobileTableCard({ request, setSelectedRequest }) {
+export default function RequestsMobileCard({ request, setSelectedRequest }) {
   const statusStyles = {
     pending:  "border-yellow-400 bg-yellow-50",
     accepted: "border-green-400 bg-green-50",

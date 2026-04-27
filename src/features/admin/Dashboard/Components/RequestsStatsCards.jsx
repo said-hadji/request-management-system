@@ -39,7 +39,7 @@ const CARDS_CONFIG = [
   },
 ];
 
-export default function Cards({ requests, selectedCard, setSelectedCard }) {
+export default function RequestsStatsCards({ requests, selectedCard, setSelectedCard }) {
   const counts = requests.reduce(
     (acc, r) => {
       if (r.status === undefined) return console.log("Undefined status!");
@@ -95,7 +95,7 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
           >
             <div className="flex items-center gap-2">
               <span>{card.icon}</span>
-              <h2 className="text-lg font-medium">{card.title}</h2>
+              <h2 className="text-lg font-medium truncate">{card.title}</h2>
             </div>
 
             <div className="flex flex-col gap-1">

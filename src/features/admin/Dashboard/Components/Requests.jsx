@@ -1,8 +1,8 @@
 // import { useState } from "react";
 import EmptyRequestsState from "../../../../Components/EmptyRequestsState";
-import Table from "./Table";
+import Table from "./RequestsTable";
 import useIsMobile from "../../../../Utils/IsMobile";
-import MobileTable from "./MobileTable";
+import RequestsMobileList from "./RequestsMobileList";
 
 export default function Requests({
   requests,
@@ -26,7 +26,7 @@ export default function Requests({
           setSelectedRequest={setSelectedRequest}
         />
       ) : (
-        <MobileTable requests={filteredArray} setSelectedRequest={setSelectedRequest} />
+        <RequestsMobileList requests={filteredArray} setSelectedRequest={setSelectedRequest} />
       )}
     </div>
   );
