@@ -40,12 +40,15 @@ const CARDS_CONFIG = [
 ];
 
 export default function Cards({ requests, selectedCard, setSelectedCard }) {
-  const counts = {
-    total: requests.length,
-    pending: requests.filter((r) => r.status === "pending").length,
-    accepted: requests.filter((r) => r.status === "accepted").length,
-    rejected: requests.filter((r) => r.status === "rejected").length,
-  };
+  const counts = requests.reduce(
+    (acc, r) => {
+      if (r.status === undefined) return console.log("Undefined status!");
+      acc.total++;
+      acc[r.status]++;
+      return acc;
+    },
+    { total: 0, pending: 0, accepted: 0, rejected: 0 },
+  );
 
   const getIcon = (type) => {
     switch (type) {
@@ -106,7 +109,7 @@ export default function Cards({ requests, selectedCard, setSelectedCard }) {
                       <TrendingDown className="text-red-500" />
                     ))}
                   <span className={`${trendColor} text-sm`}>
-                    {trend === 0.0 ? "Stable" : card.trending}
+                    {trend === 0 ? "Stable" : `${trend}%`}
                   </span>
                 </div>
                 <span className="text-black/90 text-sm">from last week</span>
