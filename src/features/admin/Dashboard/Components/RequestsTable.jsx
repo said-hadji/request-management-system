@@ -1,4 +1,4 @@
-import TableRow from "./TableRow";
+import RequestTableRow from "./RequestTableRow";
 
 const TABLE_COLUMNS = [
   { title: "First Name" },
@@ -22,7 +22,7 @@ export default function RequestsTable({ requests, setSelectedRequest }) {
       </header>
 
       {requests.map((request) => (
-        <TableRow
+        <RequestTableRow
           key={request.id}
           request={request}
           setSelectedRequest={setSelectedRequest}
