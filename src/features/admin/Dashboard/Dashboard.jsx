@@ -3,9 +3,9 @@ import RequestsStatsCards from "./Components/RequestsStatsCards";
 import Requests from "./Components/Requests";
 
 export default function Dashboard({ requests, setSelectedRequest }) {
-  const [selectedCard, setSelectedCard] = useState(() => {
-    return localStorage.getItem("selectedCard") || "total";
-  });
+  const [selectedCard, setSelectedCard] = useState(
+    () => localStorage.getItem("selectedCard") || "total",
+  );
 
   useEffect(() => {
     localStorage.setItem("selectedCard", selectedCard);
@@ -13,7 +13,7 @@ export default function Dashboard({ requests, setSelectedRequest }) {
 
   return (
     <div className="lg:ml-90 flex-1 h-full flex flex-col gap-10 mt-4 overflow-hidden">
-      <div className="px-4 lg:-x-0">
+      <div className="px-4">
         <h1 className="text-4xl font-bold">Dashboard</h1>
       </div>
 

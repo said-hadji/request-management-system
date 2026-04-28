@@ -8,18 +8,18 @@ export default function Requests({
   selectedCard,
   setSelectedRequest,
 }) {
+  const isMobile = useIsMobile();
+
   const filteredArray =
     selectedCard === "total"
       ? requests
       : requests.filter((r) => r.status === selectedCard);
 
-  const isMobile = useIsMobile();
-
   return (
     <div className="relative w-full flex-1 min-h-0 rounded-2xl flex flex-col gap-4 overflow-hidden px-4">
       {filteredArray.length === 0 ? (
         <EmptyRequestsState selectedCard={selectedCard} />
-      ) : filteredArray.length > 0 && !isMobile ? (
+      ) : !isMobile ? (
         <RequestsTable
           requests={filteredArray}
           setSelectedRequest={setSelectedRequest}

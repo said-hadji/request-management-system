@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 import Sidebar from "../../Components/Sidebar";
-import Requests from "./LoanRequests";
 import Dashboard from "./Dashboard/Dashboard";
 import RequestDetailsModal from "./Dashboard/Components/RequestDetailsModal";
 
@@ -15,11 +14,7 @@ export default function AdminLayout({
   requests,
   setRequests,
 }) {
-  const [section, setSection] = useState(() => {
-    const old = localStorage.getItem("section") || "dashboard";
-    const redirectToDashboard = ["welcome", "requestALoan"];
-    return redirectToDashboard.includes(old) ? "dashboard" : old || "dashboard";
-  });
+  const [section, setSection] = useState("dashboard");
   const [selectedRequest, setSelectedRequest] = useState(null);
 
   useEffect(() => {
@@ -40,12 +35,7 @@ export default function AdminLayout({
         onClick={() => setIsSidebar(true)}
         className={`m-4 mt-4.5 lg:hidden`}
       />
-      {section === "dashboard" && (
-        <Dashboard
-          requests={requests}
-          setSelectedRequest={setSelectedRequest}
-        />
-      )}
+      <Dashboard requests={requests} setSelectedRequest={setSelectedRequest} />
       {selectedRequest && (
         <RequestDetailsModal
           requests={requests}
