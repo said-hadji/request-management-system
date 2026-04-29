@@ -1,4 +1,48 @@
 import { useEffect, useMemo, useState } from "react";
+import FormField from "./FormField";
+
+const LOAN_FORM_FIELDS = {
+  PERSONAL_FIELDS: [
+    {
+      name: "firstName",
+      label: "First Name",
+      type: "text",
+      getError: (value, isSubmitted) =>
+        !value && isSubmitted ? "Enter your first name" : null,
+    },
+    {
+      name: "lastName",
+      label: "Last Name",
+      type: "text",
+      getError: (value, isSubmitted) =>
+        !value && isSubmitted ? "Enter your last name" : null,
+    },
+  ],
+  ADDITIONAL_FIELDS: [
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      getError: (value, isSubmitted) => {
+        if (!value && isSubmitted) return "Enter your email";
+        if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+          return "Incorrect email format";
+        return null;
+      },
+    },
+    {
+      name: "age",
+      label: "Age",
+      type: "text",
+      getError: (value, isSubmitted) => {
+        if (!value && isSubmitted) return "Enter your age";
+        const age = Number(value);
+        if (value && (age < 21 || age > 60)) return "Age is not allowed";
+        return null;
+      },
+    },
+  ],
+};
 
 export default function LoanForm({ setIsSuccess, setRequests }) {
   useEffect(() => {
@@ -44,17 +88,17 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
     }));
   };
 
-  const sanitizedAge = (e) => {
-    const value = e.target.value;
-    setFormData((prev) => ({
-      ...prev,
-      age: value.replace(/\D/g, ""),
-    }));
-  };
+  // const sanitizedAge = (e) => {
+  //   const value = e.target.value;
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     age: value.replace(/\D/g, ""),
+  //   }));
+  // };
 
   const isEmailValid = /\S+@\S+\.\S+/.test(formData.email);
   const age = Number(formData.age);
-  const isAgeCorrect = age >= 21 && age <= 60 && Number.isInteger(age);
+  const isAgeAllowed = age >= 21 && age <= 60 && Number.isInteger(age);
 
   function toggleIsSelected() {
     setIsSelected((prev) => !prev);
@@ -87,7 +131,7 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
       formData.email &&
       isEmailValid &&
       formData.age &&
-      isAgeCorrect &&
+      isAgeAllowed &&
       formData.isEmployee &&
       formData.salary;
 
@@ -145,103 +189,40 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
 
           <div className="w-full flex flex-col items-center gap-4">
             <div className="w-full lg:w-xl space-y-4">
+              {/* Personal fields */}
               <div className="flex flex-col sm:flex-row gap-4">
-                {/* FirstName input */}
-                <div className="flex-1">
-                  <div className="relative">
-                    <input
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                      value={formData.firstName}
-                      name="firstName"
-                      type="text"
-                      placeholder=""
-                      className={inputStyle}
+                {LOAN_FORM_FIELDS?.PERSONAL_FIELDS?.map((field) => {
+                  const name = field.name;
+                  const error = field.getError(formData[name], isSubmitted);
+                  return (
+                    <FormField
+                      field={field}
+                      value={formData[name]}
+                      onChange={handleInputChange}
+                      error={error}
+                      inputStyle={inputStyle}
                     />
-                    <span className="absolute top-1/2 -translate-y-1/2 left-4 pointer-events-none text-gray-600 peer-focus:top-4 peer-focus:text-sm peer-focus:text-gray-400 peer-not-placeholder-shown:top-4 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:text-gray-400 duration-150">
-                      First Name
-                    </span>
-                  </div>
-                  {!formData.firstName && isSubmitted && (
-                    <span className={`text-red-500`}>
-                      Enter your first name
-                    </span>
-                  )}
-                </div>
-
-                {/* LastName input */}
-                <div className="flex-1">
-                  <div className="relative">
-                    <input
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                      value={formData.lastName}
-                      name="lastName"
-                      type="text"
-                      placeholder=""
-                      className={inputStyle}
-                    />
-                    <span className="absolute top-1/2 -translate-y-1/2 left-4 pointer-events-none text-gray-600 peer-focus:top-4 peer-focus:text-sm peer-focus:text-gray-400 peer-not-placeholder-shown:top-4 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:text-gray-400 duration-150">
-                      Last Name
-                    </span>
-                  </div>
-                  {!formData.lastName && isSubmitted && (
-                    <span className={`text-red-500`}>Enter your last name</span>
-                  )}
-                </div>
+                  );
+                })}
               </div>
 
-              {/* Email input */}
-              <div>
-                <div className="relative">
-                  <input
-                    onChange={(e) => {
-                      handleInputChange(e);
-                    }}
-                    value={formData.email}
-                    name="email"
-                    type="email"
-                    placeholder=""
-                    className={inputStyle}
+              {/* Additional fields */}
+              {LOAN_FORM_FIELDS?.ADDITIONAL_FIELDS?.map((field) => {
+                const name = field.name;
+                const error = field.getError(formData[name], isSubmitted);
+
+                return (
+                  <FormField
+                    field={field}
+                    value={formData[name]}
+                    onChange={handleInputChange}
+                    error={error}
+                    inputStyle={inputStyle}
                   />
-                  <span className="absolute top-1/2 -translate-y-1/2 left-4 pointer-events-none text-gray-600 peer-focus:top-4 peer-focus:text-sm peer-focus:text-gray-400 peer-not-placeholder-shown:top-4 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:text-gray-400 duration-150">
-                    Email
-                  </span>
-                </div>
-                <span className={`text-red-500`}>
-                  {!formData.email && isSubmitted && "Enter your email"}
-                  {formData.email && !isEmailValid && "Incorrect email format"}
-                </span>
-              </div>
-
-              {/* Age input */}
-              <div>
-                <div className="relative w-full">
-                  <input
-                    onChange={(e) => {
-                      sanitizedAge(e);
-                    }}
-                    value={formData.age}
-                    name="age"
-                    type="text"
-                    inputMode="numeric"
-                    placeholder=""
-                    className={inputStyle}
-                  />
-                  <span className="absolute top-[50%] -translate-y-1/2 left-4 pointer-events-none text-gray-600 peer-focus:top-4 peer-focus:text-sm peer-focus:text-gray-400 peer-not-placeholder-shown:top-4 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:text-gray-400 duration-150">
-                    Age
-                  </span>
-                </div>
-                <span className={`text-red-500 `}>
-                  {!formData.age && isSubmitted && "Enter your age"}
-                  {formData.age && !isAgeCorrect && "Age is not allowed"}
-                </span>
-              </div>
+                );
+              })}
 
               {/* isEmployee checkbox */}
-
               <div>
                 <label className="flex items-center space-x-2 cursor-pointer">
                   <div className="w-5 h-5 bg-gray-100 border border-gray-300 rounded flex items-center justify-center peer">

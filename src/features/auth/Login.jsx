@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const LOGIN_FORM_FIELDS = [
-  { id: 1, name: "email", label: "Email" },
-  { id: 2, name: "password", label: "Password" },
+  { name: "email", label: "Email" },
+  { name: "password", label: "Password" },
 ];
 
 export default function Login({ setIsAdmin }) {
@@ -66,12 +66,12 @@ export default function Login({ setIsAdmin }) {
         </div>
 
         <div className="flex flex-col gap-4">
-          {LOGIN_FORM_FIELDS.map((input) => {
-            const name = input.name;
+          {LOGIN_FORM_FIELDS.map((field) => {
+            const name = field.name;
             const isInvalid =
               name === "email" ? !isEmailValid : !isPasswordValid;
             return (
-              <div key={input.id}>
+              <div key={field.name}>
                 <div className="relative">
                   <input
                     onChange={(e) => handleInputChange(e)}
@@ -82,7 +82,7 @@ export default function Login({ setIsAdmin }) {
                     className="peer w-full outline-none bg-gray-100 rounded-2xl px-4 py-6"
                   />
                   <span className="absolute top-1/2 -translate-y-1/2 left-4 pointer-events-none text-gray-600 peer-focus:top-4 peer-focus:text-sm peer-focus:text-gray-400 peer-not-placeholder-shown:top-4 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:text-gray-400 duration-150">
-                    {input.label}
+                    {field.label}
                   </span>
                 </div>
                 <span
