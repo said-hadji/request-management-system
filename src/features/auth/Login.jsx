@@ -32,7 +32,7 @@ export default function Login({ setIsAdmin }) {
   const isPasswordValid = validUsers.includes(credentials.password);
 
   return (
-    <div className="container mx-auto w-7xl h-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center p-4">
       <div className="space-y-8">
         <h1 className="text-4xl font-extrabold">Welcome in our Bank</h1>
         <div className="flex flex-col gap-6">
