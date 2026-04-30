@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import RequestsStatsCards from "./Components/RequestsStatsCards";
-import Requests from "./Components/Requests";
+import RequestsStatsCards from "./components/RequestsStatsCards";
+import Requests from "./components/Requests";
 
 export default function Dashboard({ requests, setSelectedRequest }) {
   const [selectedCard, setSelectedCard] = useState(

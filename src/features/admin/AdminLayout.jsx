@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import Sidebar from "../../Components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import Dashboard from "./Dashboard/Dashboard";
-import RequestDetailsModal from "./Dashboard/Components/RequestDetailsModal";
+import RequestDetailsModal from "./Dashboard/components/RequestDetailsModal";
 
 import { Menu } from "lucide-react";
 

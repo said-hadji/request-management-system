@@ -1,4 +1,4 @@
-export default function LoanSuccess() {
+export default function LoanSuccessMessage() {
   return (
     <div className="flex-1 h-full flex justify-center items-center">
       <div className="flex flex-col items-center">

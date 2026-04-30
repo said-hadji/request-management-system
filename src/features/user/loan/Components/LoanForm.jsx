@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import FormField from "./FormField";
+import LoanFormField from "./LoanFormField";
 
 const LOAN_FORM_FIELDS = {
   PERSONAL_FIELDS: [
@@ -193,7 +193,7 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
                   const name = field.name;
                   const error = field.getError(formData[name], isSubmitted);
                   return (
-                    <FormField
+                    <LoanFormField
                       key={field.name}
                       field={field}
                       value={formData[name]}
@@ -211,7 +211,7 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
                 const error = field.getError(formData[name], isSubmitted);
 
                 return (
-                  <FormField
+                  <LoanFormField
                     key={field.name}
                     field={field}
                     value={formData[name]}

@@ -1,4 +1,4 @@
-export default function Welcome() {
+export default function WelcomePage() {
   const features = [
     { id: 1, title: "📄 Loan request form with validation" },
     { id: 2, title: "🧠 Basic approval / rejection logic" },

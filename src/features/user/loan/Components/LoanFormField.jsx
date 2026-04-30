@@ -1,4 +1,4 @@
-export default function FormField({ field, value, onChange, error, inputStyle }) {
+export default function LoanFormField({ field, value, onChange, error, inputStyle }) {
   return (
     <div className="flex-1">
       <div className="relative">

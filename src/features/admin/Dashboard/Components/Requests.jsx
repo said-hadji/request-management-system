@@ -1,4 +1,4 @@
-import EmptyRequestsState from "../../../../Components/EmptyRequestsState";
+import EmptyRequestsState from "../../../../components/EmptyRequestsState";
 import RequestsTable from "./RequestsTable";
 import useIsMobile from "../../../../Utils/IsMobile";
 import RequestsMobileList from "./RequestsMobileList";

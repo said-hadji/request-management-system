@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import Welcome from "./Welcome";
-import LoanRequestFlow from "./loan/LoanRequestFlow";
-import Sidebar from "../../Components/Sidebar";
+import WelcomePage from "./WelcomePage";
+import LoanRequestStepper from "./loan/LoanRequestStepper";
+import Sidebar from "../../components/Sidebar";
 import { Menu } from "lucide-react";
 
 export default function UserLayout({
@@ -32,9 +32,9 @@ export default function UserLayout({
         setIsAdmin={setIsAdmin}
       />
       <Menu onClick={() => setIsSidebar(true)} className="m-1 lg:hidden" />
-      {section === "welcome" && <Welcome />}
+      {section === "welcome" && <WelcomePage />}
       {section === "requestALoan" && (
-        <LoanRequestFlow setRequests={setRequests} />
+        <LoanRequestStepper setRequests={setRequests} />
       )}
     </div>
   );
