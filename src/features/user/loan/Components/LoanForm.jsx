@@ -44,6 +44,12 @@ const LOAN_FORM_FIELDS = {
   ],
 };
 
+const SALARY_MAP = {
+  "Less than 1000$": 5000,
+  "Between 1000$ and 5000$": 20000,
+  "Greater than 5000$": 50000,
+};
+
 export default function LoanForm({ setIsSuccess, setRequests }) {
   useEffect(() => {
     if (!localStorage.getItem("requests")) {
@@ -88,17 +94,13 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
     }));
   };
 
-  // const sanitizedAge = (e) => {
-  //   const value = e.target.value;
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     age: value.replace(/\D/g, ""),
-  //   }));
-  // };
-
-  const isEmailValid = /\S+@\S+\.\S+/.test(formData.email);
-  const age = Number(formData.age);
-  const isAgeAllowed = age >= 21 && age <= 60 && Number.isInteger(age);
+  const sanitizedAge = (e) => {
+    const value = e.target.value;
+    setFormData((prev) => ({
+      ...prev,
+      age: value.replace(/\D/g, ""),
+    }));
+  };
 
   function toggleIsSelected() {
     setIsSelected((prev) => !prev);
@@ -113,30 +115,29 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
   }
 
   const steps = useMemo(() => {
-    if (formData.salary === "Less than 1000$") {
-      return generateSteps(5000);
-    } else if (formData.salary === "Between 1000$ and 5000$") {
-      return generateSteps(20000);
-    } else if (formData.salary === "Greater than 5000$") {
-      return generateSteps(50000);
-    } else {
-      return [];
-    }
+    const max = SALARY_MAP[formData.salary];
+    return max ? generateSteps(max) : [];
   }, [formData.salary]);
 
-  function completed() {
-    const isCompleted =
-      formData.firstName &&
-      formData.lastName &&
-      formData.email &&
-      isEmailValid &&
-      formData.age &&
-      isAgeAllowed &&
-      formData.isEmployee &&
-      formData.salary;
+  const hasErrors = () => {
+    const allFields = [
+      ...LOAN_FORM_FIELDS.PERSONAL_FIELDS,
+      ...LOAN_FORM_FIELDS.ADDITIONAL_FIELDS,
+    ];
 
-    if (!isCompleted) return;
-    setIsSuccess(true);
+    return allFields.some((field) =>
+      field.getError(formData[field.name], true),
+    );
+  };
+
+  function handleSubmitSuccess() {
+    if (hasErrors() || !formData.isEmployee || !formData.salary) return;
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsSuccess(true);
+      setIsLoading(false);
+    }, 1000);
 
     const newRequest = {
       id: crypto.randomUUID(),
@@ -169,11 +170,8 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (isLoading) return;
           setIsSubmitted(true);
-          setIsLoading(true);
-          completed();
-          setIsLoading(false);
+          handleSubmitSuccess();
         }}
         action=""
         className="w-full lg:w-xl flex flex-col justify-between gap-4"
@@ -196,6 +194,7 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
                   const error = field.getError(formData[name], isSubmitted);
                   return (
                     <FormField
+                      key={field.name}
                       field={field}
                       value={formData[name]}
                       onChange={handleInputChange}
@@ -213,9 +212,10 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
 
                 return (
                   <FormField
+                    key={field.name}
                     field={field}
                     value={formData[name]}
-                    onChange={handleInputChange}
+                    onChange={name === "age" ? sanitizedAge : handleInputChange}
                     error={error}
                     inputStyle={inputStyle}
                   />
@@ -232,9 +232,9 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
                           ...prev,
                           isEmployee: e.target.checked,
                           salary: "",
+                          amount: 500,
                         }));
                         setIndex(0);
-                        setFormData((prev) => ({ ...prev, amount: 500 }));
                       }}
                       checked={formData.isEmployee}
                       name="isEmployee"
@@ -332,8 +332,11 @@ export default function LoanForm({ setIsSuccess, setRequests }) {
           </div>
         </div>
 
-        <button className="bg-gray-950 hover:bg-gray-900 rounded-2xl shadow-xl text-white font-medium py-6 cursor-pointer">
-          Submit
+        <button
+          disabled={isLoading}
+          className="bg-gray-950 hover:bg-gray-900 disabled:bg-gray-100 disabled:shadow-none disabled:text-black rounded-2xl shadow-xl text-white font-medium py-6 cursor-pointer"
+        >
+          {isLoading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

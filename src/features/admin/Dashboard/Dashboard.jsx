@@ -17,7 +17,7 @@ export default function Dashboard({ requests, setSelectedRequest }) {
         <h1 className="text-4xl font-bold">Dashboard</h1>
       </div>
 
-      <div className="w-full min-h-0 flex-1 flex flex-col gap-4">
+      <div className="w-full min-h-0 flex-1 flex flex-col gap-4 mb-4">
         <RequestsStatsCards
           requests={requests}
           selectedCard={selectedCard}

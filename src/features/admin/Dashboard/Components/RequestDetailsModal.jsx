@@ -16,10 +16,10 @@ const BUTTONS = [
 ];
 
 const STATUS_STYLE = {
-    pending: "bg-yellow-200",
-    accepted: "bg-green-200",
-    rejected: "bg-red-200",
-  };
+  pending: "bg-yellow-200",
+  accepted: "bg-green-200",
+  rejected: "bg-red-200",
+};
 
 export default function RequestDetailsModal({
   selectedRequest,
@@ -38,8 +38,6 @@ export default function RequestDetailsModal({
     localStorage.setItem("requests", JSON.stringify(newUpdate));
     closeSideDrawer();
   };
-
-  
 
   return (
     <div
@@ -83,12 +81,6 @@ export default function RequestDetailsModal({
                 key={button.id}
                 onClick={() => updateStatus(button.type)}
                 disabled={selectedRequest.status !== "pending"}
-                style={{
-                  boxShadow:
-                    isAccept && selectedRequest.status === "pending"
-                      ? "0px 0px 8px 5px #a1f3be"
-                      : "",
-                }}
                 className={`flex-1 py-4 ${isAccept ? "bg-[#1bb454] hover:bg-green-600" : "bg-red-500 hover:bg-red-600"} duration-300 disabled:bg-gray-100 rounded-2xl text-white disabled:text-gray-300 font-medium cursor-pointer disabled:cursor-not-allowed`}
               >
                 {button.title}

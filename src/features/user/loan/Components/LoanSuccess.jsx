@@ -9,8 +9,6 @@ export default function LoanSuccess() {
           viewBox="0 0 64 64"
           fill="none"
         >
-          {/* <circle cx="32" cy="32" r="30" stroke="#4CAF50" stroke-width="4" /> */}
-
           <circle cx="32" cy="32" r="28" fill="#030712" />
 
           <path
