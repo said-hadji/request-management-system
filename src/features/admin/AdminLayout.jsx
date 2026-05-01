@@ -22,7 +22,7 @@ export default function AdminLayout({
   }, [section]);
 
   return (
-    <div className="w-full h-full flex flex-col lg:flex-row lg:gap-6 lg:py-10">
+    <div className="w-full h-full flex flex-col lg:flex-row gap-2 lg:gap-6 lg:py-10">
       <Sidebar
         isSidebar={isSidebar}
         setIsSidebar={setIsSidebar}
@@ -33,7 +33,7 @@ export default function AdminLayout({
       />
       <Menu
         onClick={() => setIsSidebar(true)}
-        className={`m-4 mt-4.5 lg:hidden`}
+        className={`mx-4 mt-4.5 lg:hidden`}
       />
       <Dashboard requests={requests} setSelectedRequest={setSelectedRequest} />
       {selectedRequest && (

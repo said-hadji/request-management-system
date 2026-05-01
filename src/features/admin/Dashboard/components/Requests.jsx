@@ -7,6 +7,8 @@ export default function Requests({
   requests,
   selectedCard,
   setSelectedRequest,
+  searchInputValue,
+  setSearchInputValue,
 }) {
   const isMobile = useIsMobile();
 
