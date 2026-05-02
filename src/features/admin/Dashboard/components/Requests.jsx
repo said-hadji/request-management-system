@@ -2,14 +2,13 @@ import EmptyRequestsState from "../../../../components/EmptyRequestsState";
 import RequestsTable from "./RequestsTable";
 import useIsMobile from "../../../../Utils/IsMobile";
 import RequestsMobileList from "./RequestsMobileList";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 export default function Requests({
   requests,
   selectedCard,
   setSelectedRequest,
   searchInputValue,
-  setSearchInputValue,
 }) {
   const isMobile = useIsMobile();
 
@@ -22,9 +21,10 @@ export default function Requests({
 
     if (searchInputValue !== "") {
       const filteredArray = result.filter((r) => {
-        return r.firstName
-          .toLowerCase()
-          .includes(searchInputValue.toLowerCase());
+        return (
+          r.firstName.toLowerCase().includes(searchInputValue.toLowerCase()) ||
+          r.lastName.toLowerCase().includes(searchInputValue.toLowerCase())
+        );
       });
 
       result = filteredArray;
